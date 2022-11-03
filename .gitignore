@@ -10,6 +10,9 @@ __pycache__/
 *@popperjs
 *bootstrap
 
+# Static Files
+*admin
+
 # Distribution / packaging
 .Python
 build/
