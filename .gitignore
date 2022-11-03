@@ -6,6 +6,10 @@ __pycache__/
 # C extensions
 *.so
 
+# Bootstrap dependences
+*@popperjs
+*bootstrap
+
 # Distribution / packaging
 .Python
 build/

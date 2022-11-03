@@ -1,4 +1,6 @@
-<h1>🍨Sorveteria<h1>
-<hr>
-<img src="https://img.shields.io/badge/STATUS-EM%20DESENVOLVIMENTO-brightgreen" align="center">
+# 🍨Sorveteria
+![em desenvolvimento](https://img.shields.io/badge/STATUS-EM%20DESENVOLVIMENTO-brightgreen)
 
+# 🔨Ferramentas Utilizadas
+* Django 4.1.3
+* Bootstrap 5.2.2
