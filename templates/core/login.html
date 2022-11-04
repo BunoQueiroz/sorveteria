@@ -1,0 +1,22 @@
+{% extends 'partials/_base.html' %}
+{% load static %}
+{% block content %}
+<main class="container principal">
+    <div class="principal__content d-flex flex-column justify-content-evenly">
+        <form action="#" class="formulario">
+            <figure class="d-flex justify-content-center">
+                <img class="align-self-center form__icon" src="{% static 'img/login-icon.svg' %}" alt="Icone de login">
+            </figure>
+            <div class="form-floating mb-3">
+                <input type="email" class="form-control fw-semibold" id="email" placeholder="seu email" name="email">
+                <label class="fw-semibold" for="email">Email address</label>
+            </div>
+            <div class="form-floating mb-3">
+                <input type="password" class="form-control fw-semibold" id="password" placeholder="sua senha" name="password">
+                <label class="fw-semibold" for="password">Password</label>
+            </div>
+            <button type="submit" class="btn btn-success btn-lg">Logar</button>
+        </form>
+    </div>
+</main>
+{% endblock content %}
