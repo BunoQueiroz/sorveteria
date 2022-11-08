@@ -5,10 +5,10 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="shortcut icon" href="img/check-logo.svg" type="image/x-icon">
+    <link rel="shortcut icon" href="{% static 'img/check-logo.svg' %}" type="image/x-icon">
     <link rel="stylesheet" href="{% static 'bootstrap/dist/css/bootstrap.min.css' %}">
-    <link rel="stylesheet" href="{% static 'styles/style.css' %}">
-    <title>A sorveteria que deixa a sua vida mais gostosa</title>
+    {% block links %}{% endblock links %}
+    <title>{% block page %}{% endblock page %} | Sorveteria Tropical - A Sorveteria que deixa a sua vida mais gostosa</title>
 </head>
 <body>
     {% include 'partials/_header.html' %}

@@ -1,5 +1,9 @@
 {% extends 'partials/_base.html' %}
 {% load static %}
+{% block links %}
+    <link rel="stylesheet" href="{% static 'styles/style.css' %}">
+{% endblock links %}
+{% block page %}Login{% endblock page %}
 {% block content %}
 <main class="container principal">
     <div class="principal__content d-flex flex-column justify-content-evenly">
