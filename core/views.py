@@ -1,7 +1,6 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth.models import User
-from random import randrange
-from .forms import validate_form
+from .forms import validate_form, convert_to_dict
 
 def home(request):
     return render(request, 'core/index.html')
@@ -14,24 +13,9 @@ def register(request):
         return render(request, 'core/register.html')
 
     if request.method == 'POST':
-        first_name = request.POST.get('firstName')
-        username = first_name + str(randrange(1111,9999))
-        last_name = request.POST.get('lastName')
-        email = request.POST.get('email')
-        password = request.POST.get('password')
-        confirm_password = request.POST.get('confirmPassword')
-
-        data = {
-            'username' : username, 
-            'first_name' : first_name, 
-            'last_name' : last_name, 
-            'email' : email, 
-            'password' : password, 
-            'confirm_password' : confirm_password
-        }
-
-        if (validate_form(data)):
-            user = User.objects.create_user(username=username,first_name=first_name, last_name=last_name, email=email, password=password, is_superuser=False)
+        if (validate_form(request)):
+            data = convert_to_dict(request)
+            user = User.objects.create_user(username=data['username'],first_name=data['first_name'], last_name=data['last_name'], email=data['email'], password=data['password'], is_superuser=False)
             return redirect('login')
         else:
             return redirect('register')
