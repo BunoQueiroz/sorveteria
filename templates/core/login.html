@@ -11,6 +11,7 @@
             <figure class="d-flex justify-content-center">
                 <img class="align-self-center form__icon" src="{% static 'img/login-icon.svg' %}" alt="Icone de login">
             </figure>
+            {% include 'partials/_messages.html' %}
             <div class="form-floating mb-3">
                 <input type="email" class="form-control fw-semibold" id="email" placeholder="seu email" name="email">
                 <label class="fw-semibold" for="email">Email address</label>

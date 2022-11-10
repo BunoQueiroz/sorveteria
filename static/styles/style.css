@@ -1,6 +1,5 @@
 .principal {
     min-height: 600px;
-    height: calc(100vh - 112px);
 }
 
 .principal__content {

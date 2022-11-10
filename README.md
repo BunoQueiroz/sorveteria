@@ -4,3 +4,7 @@
 # 🔨Ferramentas Utilizadas
 * Django 4.1.3
 * Bootstrap 5.2.2
+
+# Funcionalidades
+* Cadastro de clientes no banco de dados
+* Sistema de mensagens

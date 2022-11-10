@@ -1,5 +1,6 @@
 from django.contrib.auth.models import User
 from random import randrange
+from django.contrib import messages
 
 def validate_form(request):
     data_dict = convert_to_dict(request)
@@ -42,6 +43,17 @@ def data_not_empty(data_dict):
 def validate_password(data_dict):
     password = data_dict['password']
     confirm_password = data_dict['confirm_password']
-    if password == confirm_password and len(str(password)) >= 8:
-        return True
-    return False
+    if password != confirm_password or len(str(password)) < 8:
+        return False
+    return True
+
+def messages_error(data_dict):
+    if email_validate(data_dict):
+        message_email = 'O email informado ja foi cadastrado no sistema'
+        messages.error(request, message_email)
+    elif validate_password(data_dict):
+        message_password = 'Sua senha estava muito fraca ou a confirmação estava incorreta'
+        messages.error(request, message_password)
+    elif data_not_empty(data_dict):
+        message_empty = 'Não podem haver campos em branco'
+        messages.error(request, message_empty)

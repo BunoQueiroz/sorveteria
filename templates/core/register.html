@@ -5,8 +5,9 @@
 {% endblock links %}
 {% block page %}Cadastro{% endblock page %}
 {% block content %}
-<main class="container principal">
-    <div class="principal__content d-flex flex-column justify-content-evenly">
+<main class="container py-3">
+    {% include 'partials/_messages.html' %}
+    <div class="d-flex flex-column justify-content-evenly">
         <form action="{% url 'register' %}" class="formulario" method="POST">{% csrf_token %}
             <figure class="d-flex justify-content-center">
                 <img class="align-self-center form__icon" src="{% static 'img/check-logo.svg' %}" alt="Icone de login">
