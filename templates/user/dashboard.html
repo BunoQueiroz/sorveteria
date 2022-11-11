@@ -1,8 +1,14 @@
 {% extends 'partials/_base.html' %}
+{% load static %}
+{% block links %}
+<link rel="stylesheet" href="{% static 'styles/dashboard.css' %}">
+{% endblock links %}
 {% block page %}Dashboard{% endblock page %}
 {% block content %}
+<main class="container main">
     {% include 'partials/_messages.html' %}
-    <h2 class="text-center">
+    <h6 class="text-center">
         Olá, <span class="text-danger">{{user.first_name}}</span>. O seu nome de usuário é gerando automaticamente, para mudá-lo <a href="#">clique aqui</a>
-    </h2>
+    </h6>
+</main>
 {% endblock content %}

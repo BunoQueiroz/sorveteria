@@ -10,6 +10,11 @@
             </button>
             <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
                 <ul class="navbar-nav">
+                    {% if user.is_authenticated %}
+                    <li class="nav-item">
+                        <a class="nav-link active text-light text-uppercase" aria-current="page" href="{% url 'logout' %}">Logout</a>
+                    </li>
+                    {% else %}
                     <li class="nav-item">
                         <a class="nav-link active text-light text-uppercase" aria-current="page" href="{% url 'home' %}">Home</a>
                     </li>
@@ -19,6 +24,7 @@
                     <li class="nav-item">
                         <a class="nav-link text-light text-uppercase" href="{% url 'login' %}">Login</a>
                     </li>
+                    {% endif %}
                     <li class="nav-item">
                         <a class="nav-link text-light text-uppercase" href="#">Contato</a>
                     </li>
@@ -26,4 +32,14 @@
             </div>
         </div>
     </nav>
+    {% if user.is_authenticated %}
+    <nav class="navbar bg-light">
+        <div class="container-fluid justify-content-end">
+            <form class="d-flex" role="search">
+                <input class="form-control me-2" type="search" placeholder="Pesquisar" aria-label="Search">
+                <button class="btn btn-outline-success" type="submit">Pesquisar</button>
+            </form>
+        </div>
+    </nav>
+    {% endif %}
 </header>
