@@ -1,0 +1,9 @@
+.product-image {
+    height: 15rem;
+}
+
+.card {
+    min-height: 25rem;
+    height: 26.5rem;
+    max-width: 35rem;
+}

@@ -2,6 +2,7 @@
 {% load static %}
 {% block links %}
 <link rel="stylesheet" href="{% static 'styles/dashboard.css' %}">
+<link rel="stylesheet" href="{% static 'styles/products.css' %}">
 {% endblock links %}
 {% block page %}Dashboard{% endblock page %}
 {% block content %}
@@ -10,5 +11,8 @@
     <h6 class="text-center">
         Olá, <span class="text-danger">{{user.username}}</span>. O seu nome de usuário é gerando automaticamente, para mudá-lo <a href="#">clique aqui</a>
     </h6>
+    <section class="row">
+        {% include 'products/product.html' %}
+    </section>
 </main>
 {% endblock content %}
