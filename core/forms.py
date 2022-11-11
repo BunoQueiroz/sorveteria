@@ -1,6 +1,5 @@
 from django.contrib.auth.models import User
 from random import randrange
-from django.contrib import messages
 
 def validate_form(request):
     data_dict = convert_to_dict(request)
@@ -31,12 +30,8 @@ def email_validate(data_dict):
     return True    
 
 def data_not_empty(data_dict):
-    def remove_blanck(item):
-        return str(item).replace(" ", "")
-
     for _,i in data_dict.items():
-        i = remove_blanck(i)
-        if i == "":
+        if str(i).strip() == "":
             return False
     return True
 
@@ -57,3 +52,9 @@ def messages_error(data_dict):
     elif data_not_empty(data_dict):
         message_empty = 'Não podem haver campos em branco'
         messages.error(request, message_empty)
+
+def login_empty(data):
+    for i in data:
+        if str(i).strip() == '':
+            return True
+    return False
