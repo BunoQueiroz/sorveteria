@@ -7,4 +7,5 @@
 
 # Funcionalidades
 * Cadastro de clientes no banco de dados
+* Autenticação de usuários
 * Sistema de mensagens
