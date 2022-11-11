@@ -7,7 +7,7 @@
 {% block content %}
 <main class="container principal">
     <div class="principal__content d-flex flex-column justify-content-evenly">
-        <form action="#" class="formulario">
+        <form action="{% url 'login' %}" method="POST" class="formulario">{% csrf_token %}
             <figure class="d-flex justify-content-center">
                 <img class="align-self-center form__icon" src="{% static 'img/login-icon.svg' %}" alt="Icone de login">
             </figure>

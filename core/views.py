@@ -1,19 +1,39 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth.models import User
-from .forms import validate_form, convert_to_dict, messages_error, validate_password, email_validate, data_not_empty
+from django.contrib import auth
+from .forms import validate_form, convert_to_dict, messages_error, validate_password, email_validate, data_not_empty, login_empty
 from django.contrib import messages
+from user import views
 
 def home(request):
     return render(request, 'core/index.html')
 
 def login(request):
-    return render(request, 'core/login.html')
+    if request.method == 'GET':
+        return render(request, 'core/login.html')
+    
+    elif request.method == 'POST':
+        email = request.POST.get('email')
+        password = request.POST.get('password')
+        data = [email, password]
+
+        if login_empty(data) or not User.objects.filter(email=email).exists():
+            messages.error(request, 'Algo deu errado, por favor tente novamente daqui a alguns minutos')
+            return redirect('login')
+        
+        else:
+            name = User.objects.filter(email=email).values_list('username', flat=True).get()
+            user = auth.authenticate(request, username=name, password=password)
+            if user is not None:
+                auth.login(request, user)
+                messages.success(request, 'Login realizado com sucesso')
+                return redirect(views.dashboard)
 
 def register(request):
     if request.method == 'GET':
         return render(request, 'core/register.html')
 
-    if request.method == 'POST':
+    elif request.method == 'POST':
         if (validate_form(request)):
             data = convert_to_dict(request)
             user = User.objects.create_user(username=data['username'],first_name=data['first_name'], last_name=data['last_name'], email=data['email'], password=data['password'], is_superuser=False)
