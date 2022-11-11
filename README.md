@@ -9,3 +9,5 @@
 * Cadastro de clientes no banco de dados
 * Autenticação de usuários
 * Sistema de mensagens
+* Pesquisa por produtos no banco de dados
+* Página de Admin

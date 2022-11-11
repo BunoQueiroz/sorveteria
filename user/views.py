@@ -21,3 +21,12 @@ def logout(request):
     messages.success(request, 'Logout realizado com sucesso')
     return redirect(views.home)
     
+def search(request):
+    if 'search' in request.GET:
+        name = request.GET.get('search')
+        products = Product.objects.filter(name__icontains=name)
+
+        data = {
+            'products' : products
+        }
+        return render(request, 'user/dashboard.html', data)

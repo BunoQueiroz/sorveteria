@@ -12,6 +12,9 @@
                 <ul class="navbar-nav">
                     {% if user.is_authenticated %}
                     <li class="nav-item">
+                        <a class="nav-link active text-light text-uppercase" aria-current="page" href="{% url 'dashboard' %}">Dashboard</a>
+                    </li>
+                    <li class="nav-item">
                         <a class="nav-link active text-light text-uppercase" aria-current="page" href="{% url 'logout' %}">Logout</a>
                     </li>
                     {% else %}
@@ -33,13 +36,6 @@
         </div>
     </nav>
     {% if user.is_authenticated %}
-    <nav class="navbar bg-light">
-        <div class="container-fluid justify-content-end">
-            <form class="d-flex" role="search">
-                <input class="form-control me-2" type="search" placeholder="Pesquisar" aria-label="Search">
-                <button class="btn btn-outline-success" type="submit">Pesquisar</button>
-            </form>
-        </div>
-    </nav>
+        {% include 'partials/_search.html' %}
     {% endif %}
 </header>
