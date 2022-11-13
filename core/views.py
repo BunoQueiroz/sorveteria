@@ -3,7 +3,6 @@ from django.contrib.auth.models import User
 from django.contrib import auth
 from .forms import validate_form, convert_to_dict, messages_error, validate_password, email_validate, data_not_empty, login_empty
 from django.contrib import messages
-from user import views
 
 def home(request):
     return render(request, 'core/index.html')
@@ -27,7 +26,9 @@ def login(request):
             if user is not None:
                 auth.login(request, user)
                 messages.success(request, 'Login realizado com sucesso')
-                return redirect(views.dashboard)
+                return redirect('dashboard')
+            messages.error(request, 'Senha incorreta')
+            return redirect(login)
 
 def register(request):
     if request.method == 'GET':
