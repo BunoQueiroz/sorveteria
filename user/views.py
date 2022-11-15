@@ -9,10 +9,14 @@ import os
 
 def dashboard(request):
     if request.user.is_authenticated:
+        username = request.user.username
+
         products = Product.objects.all()
+        user = User.objects.filter(username=username).get()
 
         data = {
-            'products': products
+            'products': products,
+            'user': user,
         }
 
         return render(request, 'user/dashboard.html', data)
@@ -29,8 +33,11 @@ def search(request):
         name = request.GET.get('search')
         products = Product.objects.filter(name__icontains=name)
         if products.exists():
+            username = request.user.username
+            user = User.objects.filter(username=username).get()
             data = {
-                'products' : products
+                'products' : products,
+                'user': user,
             }
             return render(request, 'user/dashboard.html', data)
         messages.error(request, f'Infelizmente ainda não temos {str(name).upper()} em nossa sorveteria')

@@ -11,15 +11,7 @@
             <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
                 <ul class="navbar-nav">
                     {% if user.is_authenticated %}
-                    <li class="nav-item">
-                        <a class="nav-link text-light text-uppercase" aria-current="page" href="{% url 'dashboard' %}">Dashboard</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link text-light text-uppercase" aria-current="page" href="{% url 'my_profile' %}">Perfil</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link text-light text-uppercase" aria-current="page" href="{% url 'logout' %}">Logout</a>
-                    </li>
+                        {% include 'partials/_header_authenticated.html' %}
                     {% else %}
                     <li class="nav-item">
                         <a class="nav-link text-light text-uppercase" aria-current="page" href="{% url 'home' %}">Home</a>

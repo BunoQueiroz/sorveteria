@@ -1,0 +1,16 @@
+{% load static %}
+<li class="nav-item">
+    <a class="nav-link text-light text-uppercase" aria-current="page" href="{% url 'dashboard' %}">Dashboard</a>
+</li>
+<li class="nav-item">
+    <a class="nav-link text-light text-uppercase" aria-current="page" href="{% url 'my_profile' %}">
+        {% if user.img %}
+            <img class="rounded-circle user-image" src="{{ user.img.url }}" alt="{{user.first_name}}">
+        {% else %}
+            <img class="rounded-circle user-image" src="{% static 'img/user-pattern.svg' %}" alt="Image de usuário padrão">
+        {% endif %}
+    </a>
+</li>
+<li class="nav-item">
+    <a class="nav-link text-light text-uppercase" aria-current="page" href="{% url 'logout' %}">Logout</a>
+</li>
