@@ -1,4 +1,4 @@
-from django.contrib.auth.models import User
+from user.models import User
 from random import randrange
 
 def validate_form(request):

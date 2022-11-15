@@ -9,7 +9,7 @@
 <main class="container main">
     {% include 'partials/_messages.html' %}
     <h6 class="text-center">
-        Olá, <span class="text-danger">{{user.username}}</span>. O seu nome de usuário é gerando automaticamente, para mudá-lo <a href="#">clique aqui</a>
+        Olá, <span class="text-primary">{{user.first_name}}</span>
     </h6>
     <section class="row">
         {% include 'products/product.html' %}

@@ -1,3 +1,7 @@
 from django.contrib import admin
+from .models import User
 
-# Register your models here.
+class ListUsers(admin.ModelAdmin):
+    list_display = ('img',)
+
+admin.site.register(User)

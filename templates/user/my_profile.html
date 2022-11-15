@@ -1,0 +1,41 @@
+{% extends 'partials/_base.html' %}
+{% load static %}
+{% block links %}
+<link rel="stylesheet" href="{% static 'styles/profile.css' %}">
+{% endblock links %}
+{% block page %}Meu perfil{% endblock page %}
+{% block content %}
+  <main class="container main mb-3">
+    {% include 'partials/_messages.html' %}
+    <form action="{% url 'my_profile' %}" class="formulario mt-4" method="POST" enctype="multipart/form-data">{% csrf_token %}
+      {% if user.img %}
+        <figure class="d-flex justify-content-center">
+            <img class="align-self-center rounded-5 form__icon" src="{{user.img.url}}" alt="Icone de Usuário">
+        </figure>
+      {% else %}
+        <figure class="d-flex justify-content-center">
+            <img class="align-self-center rounded-5 form__icon" src="{% static 'img/user-pattern.svg' %}" alt="Icone de Usuário">
+        </figure>
+      {% endif %}
+      <div class="mb-3">
+        <label for="img" class="form-label fw-semibold fs-5">Alterar Foto de Perfil</label>
+        <input type="file" class="form-control" placeholder="Sua foto" name="img">
+      </div>
+      <div class="row">
+          <div class="col">
+              <label for="email" class="form-label fw-semibold fs-5">Seu Nome</label>
+              <input type="text" class="form-control" placeholder="Nome" name="firstName" value="{{user.first_name}}" required>
+          </div>
+          <div class="col">
+              <label for="email" class="form-label fw-semibold fs-5">Seu Sobrenome</label>
+              <input type="text" class="form-control" placeholder="Sobrenome" name="lastName" value="{{user.last_name}}" required>
+          </div>
+      </div>
+      <div class="mb-3">
+          <label for="email" class="form-label fw-semibold fs-5">Email</label>
+          <input type="email" class="form-control fw-semibold" id="email" placeholder="Seu email" name="email" value="{{user.email}}" required>
+      </div>
+      <button type="submit" class="btn btn-success btn-lg">Salvar</button>
+  </form>
+  </main>
+{% endblock content %}
