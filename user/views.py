@@ -1,11 +1,7 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib import auth, messages
 from products.models import Product
 from .models import User
-from django.conf import settings
-from PIL import Image
-from datetime import date
-import os
 
 def dashboard(request):
     if request.user.is_authenticated:
@@ -55,17 +51,12 @@ def my_profile(request):
         return render(request, 'user/my_profile.html', data)
 
     elif request.user.is_authenticated and request.method == 'POST':
-        first_name = request.POST.get('firstName')
-        last_name = request.POST.get('lastName')
-        img = request.FILES.get('img')
-        username = request.user.username
-
-        img_file = Image.open(img)
-        path = os.path.join(settings.BASE_DIR, f'media/users/imgs/{img}')
-        img_file.save(path)
-
-        user = User.objects.filter(username=username)
-        user.update(first_name=first_name, last_name=last_name, img=path)
+        user = get_object_or_404(User, username=request.user.username)
+        user.first_name = request.POST.get('firstName')
+        user.last_name = request.POST.get('lastName')
+        if 'img' in request.FILES:
+            user.img = request.FILES.get('img')
+        user.save()
 
         messages.success(request, 'Dados alterados com sucesso')
         return redirect('my_profile')
