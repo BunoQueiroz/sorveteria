@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib import auth, messages
 from products.models import Product
 from .models import User
+from django.contrib.auth.models import User as AllUsers
 
 def dashboard(request):
     if request.user.is_authenticated:
@@ -26,7 +27,7 @@ def logout(request):
     
 def search(request):
     if 'search' in request.GET:
-        name = request.GET.get('search')
+        name = request.GET.get('search').strip()
         products = Product.objects.filter(name__icontains=name)
         if products.exists():
             username = request.user.username
@@ -54,9 +55,17 @@ def my_profile(request):
         user = get_object_or_404(User, username=request.user.username)
         user.first_name = request.POST.get('firstName')
         user.last_name = request.POST.get('lastName')
+
+        if username_exists(request.POST.get('username')):
+            messages.info(request, 'O usuário informado já existe, por isso não foi alterado')
+        else:
+            user.username = request.POST.get('username')
         if 'img' in request.FILES:
             user.img = request.FILES.get('img')
         user.save()
 
         messages.success(request, 'Dados alterados com sucesso')
         return redirect('my_profile')
+
+def username_exists(username):
+    return True if AllUsers.objects.filter(username=username).exists() else False
